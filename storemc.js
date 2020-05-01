@@ -8,14 +8,8 @@ async function xd(){
     host: 'storymc.pl'
   }).then((state) => {
     console.log(state.players.length)
-    var online = state.players.length;
-    var max = state.maxplayers
-    const totalUsers22 = bot.channels.cache.get("704097045157249215")
-    totalUsers22.setName(`Online:` + " " + online +"/"+ max)
 }).catch((error) => {
-  const totalUsers2 = bot.channels.cache.get("704097045157249215")
-  totalUsers2.setName(`Online: OFFLINE`)
-   console.log(error)
+  console.log(error)
 });
 }
 async function xd2(){
@@ -25,13 +19,7 @@ async function xd2(){
     host: 'storymc.pl'
   }).then((state) => {
     console.log(state.players.length)
-    var online = state.players.length;
-    var max = state.maxplayers
-    const totalUsers23 = bot.channels.cache.get("704097045157249215")
-    totalUsers23.setName(`Online:` + " " + online +"/"+ max)
 }).catch((error) => {
-  const totalUsers23 = bot.channels.cache.get("704097045157249215")
-  totalUsers23.setName(`Online: OFFLINE`)
   console.log(error)
 });
 }
