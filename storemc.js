@@ -1,18 +1,19 @@
 const discord = require('discord.js')
 const Gamedig = require('gamedig');
 const bot = new discord.Client({disableEveryone: false});
-async function xd(){
+sync function xd(){
   Gamedig.query({
     type: 'minecraft',
     port: "19132",
     host: 'storymc.pl'
   }).then((state) => {
+    console.log(state.players.length)
     var online = state.players.length;
     var max = state.maxplayers
-    const totalUsers2 = bot.channels.get("704097045157249215")
-    totalUsers2.setName(`Online:` + " " + online +"/"+ max)
+    const totalUsers22 = bot.channels.cache.get("704097045157249215")
+    totalUsers22.setName(`Online:` + " " + online +"/"+ max)
 }).catch((error) => {
-  const totalUsers2 = bot.channels.get("704097045157249215")
+  const totalUsers2 = bot.channels.cache.get("704097045157249215")
   totalUsers2.setName(`Online: OFFLINE`)
 });
 }
@@ -22,13 +23,14 @@ async function xd2(){
     port: "19132",
     host: 'storymc.pl'
   }).then((state) => {
+    console.log(state.players.length)
     var online = state.players.length;
     var max = state.maxplayers
-    const totalUsers2 = bot.channels.get("704097045157249215")
-    totalUsers2.setName(`Online:` + " " + online +"/"+ max)
+    const totalUsers23 = bot.channels.cache.get("704097045157249215")
+    totalUsers23.setName(`Online:` + " " + online +"/"+ max)
 }).catch((error) => {
-  const totalUsers2 = bot.channels.get("704097045157249215")
-  totalUsers2.setName(`Online: OFFLINE`)
+  const totalUsers23 = bot.channels.cache.get("704097045157249215")
+  totalUsers23.setName(`Online: OFFLINE`)
 });
 }
 bot.on("ready", async () => {
