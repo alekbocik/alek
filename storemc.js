@@ -15,6 +15,7 @@ async function xd(){
 }).catch((error) => {
   const totalUsers2 = bot.channels.cache.get("704097045157249215")
   totalUsers2.setName(`Online: OFFLINE`)
+   console.log(error)
 });
 }
 async function xd2(){
@@ -31,12 +32,11 @@ async function xd2(){
 }).catch((error) => {
   const totalUsers23 = bot.channels.cache.get("704097045157249215")
   totalUsers23.setName(`Online: OFFLINE`)
+  console.log(error)
 });
 }
 bot.on("ready", async () => {
   console.log(`${bot.user.username} online`)
-  bot.user.setActivity("http://storymc.pl", {type: "WATCHING"});
-  bot.user.setStatus("dnd");
     let status = 0;
 setInterval(function() {
     if (status === 0) {
