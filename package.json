@@ -9,6 +9,7 @@
     "fs": "^0.0.1-security",
     "ms": "^2.1.2",
     "mysql": "^2.17.1",
+    "gamedig": "^2.0.20",
     "puppeteer": "^2.1.1",
     "randomstring": "^1.1.5",
     "rcon": "^1.0.3"
