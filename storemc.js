@@ -1,7 +1,7 @@
 const discord = require('discord.js')
 const Gamedig = require('gamedig');
 const bot = new discord.Client({disableEveryone: false});
-sync function xd(){
+async function xd(){
   Gamedig.query({
     type: 'minecraft',
     port: "19132",
