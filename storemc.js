@@ -7,9 +7,13 @@ async function xd(){
     port: "19132",
     host: 'storymc.pl'
   }).then((state) => {
-    console.log(state.players.length)
+    var online = state.players.length;
+    var max = state.maxplayers
+    const totalUsers2 = bot.channels.get("704097045157249215")
+    totalUsers2.setName(`Online:` + " " + online +"/"+ max)
 }).catch((error) => {
-  console.log(error)
+  const totalUsers2 = bot.channels.get("704097045157249215")
+  totalUsers2.setName(`Online: OFFLINE`)
 });
 }
 async function xd2(){
@@ -18,13 +22,19 @@ async function xd2(){
     port: "19132",
     host: 'storymc.pl'
   }).then((state) => {
-    console.log(state.players.length)
+    var online = state.players.length;
+    var max = state.maxplayers
+    const totalUsers2 = bot.channels.get("704097045157249215")
+    totalUsers2.setName(`Online:` + " " + online +"/"+ max)
 }).catch((error) => {
-  console.log(error)
+  const totalUsers2 = bot.channels.get("704097045157249215")
+  totalUsers2.setName(`Online: OFFLINE`)
 });
 }
 bot.on("ready", async () => {
   console.log(`${bot.user.username} online`)
+  bot.user.setActivity("http://storymc.pl", {type: "WATCHING"});
+  bot.user.setStatus("dnd");
     let status = 0;
 setInterval(function() {
     if (status === 0) {
