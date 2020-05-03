@@ -1,5 +1,6 @@
 const discord = require('discord.js')
 const Gamedig = require('gamedig');
+const fs = require("fs")
 const bot = new discord.Client({disableEveryone: false});
 async function xd(){
   Gamedig.query({
@@ -7,13 +8,11 @@ async function xd(){
     port: "19132",
     host: 'storymc.pl'
   }).then((state) => {
-    var online = state.players.length;
-    var max = state.maxplayers
-    const totalUsers2 = bot.channels.cache.get("704097045157249215")
-    totalUsers2.setName(`Online:` + " " + online +"/"+ max)
+    const well = bot.channels.cache.get("704097045157249215")
+    well.setName(`Online:` + " " + state.players.length)
 }).catch((error) => {
-  const totalUsers2 = bot.channels.get("704097045157249215")
-  totalUsers2.setName(`Online: OFFLINE`)
+  const well = bot.channels.cache.get("704097045157249215")
+  well.setName(`Online: OFFLINE`)
 });
 }
 async function xd2(){
@@ -22,20 +21,19 @@ async function xd2(){
     port: "19132",
     host: 'storymc.pl'
   }).then((state) => {
-    var online = state.players.length;
-    var max = state.maxplayers
-    const totalUsers2 = bot.channels.cache.get("704097045157249215")
-    totalUsers2.setName(`Online:` + " " + online +"/"+ max)
+    const well = bot.channels.cache.get("704097045157249215")
+    well.setName(`Online:` + " " + state.players.length)
 }).catch((error) => {
-  const totalUsers2 = bot.channels.get("704097045157249215")
-  totalUsers2.setName(`Online: OFFLINE`)
+  const well = bot.channels.cache.get("704097045157249215")
+  well.setName(`Online: OFFLINE`)
 });
 }
 bot.on("ready", async () => {
-  console.log(`${bot.user.username} online`)
-  bot.user.setActivity("http://storymc.pl", {type: "WATCHING"});
-  bot.user.setStatus("dnd");
+  try {
+    console.log(`${bot.user.username} online`)
     let status = 0;
+    bot.user.setActivity("http://storymc.pl/", {type: "WATCHING"});
+    bot.user.setStatus("dnd");
 setInterval(function() {
     if (status === 0) {
         xd()
@@ -45,5 +43,24 @@ setInterval(function() {
         status = 0;
       }
     }, 20000);
+}catch (e) {
+  console.log(e);
+}
 })
+fs.readdir("./handlers/", (err, files) => {
+  
+  if(err) console.log(err)
+ 
+  let jsfile = files.filter(f => f.split(".").pop() === "js")
+  if(jsfile.length <= 0) {
+    return console.log("brak eventów");
+  }
+
+  jsfile.forEach((f, i) => {
+    require(`./handlers/${f}`)
+   });
+});
+module.exports = {
+  bot: bot
+};
 bot.login(process.env.token)
