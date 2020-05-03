@@ -9,7 +9,7 @@ async function xd(){
     host: 'storymc.pl'
   }).then((state) => {
     const well = bot.channels.cache.get("704097045157249215")
-    well.setName(`Online:` + " " + state.players.length)
+    well.setName(`Online:` + " " + state.players.length + "/" + state.maxplayers)
 }).catch((error) => {
   const well = bot.channels.cache.get("704097045157249215")
   well.setName(`Online: OFFLINE`)
@@ -22,7 +22,7 @@ async function xd2(){
     host: 'storymc.pl'
   }).then((state) => {
     const well = bot.channels.cache.get("704097045157249215")
-    well.setName(`Online:` + " " + state.players.length)
+    well.setName(`Online:` + " " + state.players.length + "/" + state.maxplayers)
 }).catch((error) => {
   const well = bot.channels.cache.get("704097045157249215")
   well.setName(`Online: OFFLINE`)
