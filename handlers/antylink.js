@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const { bot } = require('../index');
+const { bot } = require('../storemc.js');
 
 bot.on('messageUpdate', function(oldMessage, newMessage) {
   if(oldMessage.author.bot) return;
