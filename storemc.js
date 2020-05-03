@@ -9,7 +9,7 @@ async function xd(){
   }).then((state) => {
     var online = state.players.length;
     var max = state.maxplayers
-    const totalUsers2 = bot.channels.get("704097045157249215")
+    const totalUsers2 = bot.channels.cache.get("704097045157249215")
     totalUsers2.setName(`Online:` + " " + online +"/"+ max)
 }).catch((error) => {
   const totalUsers2 = bot.channels.get("704097045157249215")
@@ -24,7 +24,7 @@ async function xd2(){
   }).then((state) => {
     var online = state.players.length;
     var max = state.maxplayers
-    const totalUsers2 = bot.channels.get("704097045157249215")
+    const totalUsers2 = bot.channels.cache.get("704097045157249215")
     totalUsers2.setName(`Online:` + " " + online +"/"+ max)
 }).catch((error) => {
   const totalUsers2 = bot.channels.get("704097045157249215")
