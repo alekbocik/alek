@@ -26,12 +26,19 @@ bot.on("message", async message => {
     let xd = message.member.displayName
     let xd3 = xd.replace(`.pl`, "").replace(`www.`, "").replace(`https://`, "").replace(`.com`, "").replace(`.eu`, "")
     if(!message.member.roles.cache.some(r=>["ROOT", "perm.link"].includes(r.name))) {
-      let embed = new Discord.MessageEmbed()
-      .setAuthor(`${message.author.username}` + " " + "Linki w nicku są zabronione", message.author.displayAvatarURL)
-      .setColor("#c21bb9")
-      message.channel.send(embed).then(msg => msg.delete({ timeout: 30000 }));
-      message.delete().catch(O_o=>{})
-      message.member.setNickname(xd3)
+      try{
+        let embed = new Discord.MessageEmbed()
+        .setAuthor(`${message.author.username}` + " " + "Linki w nicku są zabronione", message.author.displayAvatarURL)
+        .setColor("#c21bb9")
+        message.channel.send(embed).then(msg => msg.delete({ timeout: 30000 }));
+        message.delete().catch(O_o=>{})
+        message.member.setNickname(xd3)
+      } catch (e){
+        let embed = new Discord.MessageEmbed()
+        .setAuthor(`Brak permisji na usunięcie linku z nicku ${message.author.username}`)
+        .setColor("#c21bb9")
+        message.channel.send(embed).then(msg => msg.delete({ timeout: 30000 }));
+      }
   }
 }
 })
