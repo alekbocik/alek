@@ -33,7 +33,6 @@ bot.on("ready", async () => {
     console.log(`${bot.user.username} online`)
     let status = 0;
     bot.user.setActivity("http://storymc.pl/", {type: "WATCHING"});
-    bot.user.setStatus("dnd");
 setInterval(function() {
     if (status === 0) {
         xd()
