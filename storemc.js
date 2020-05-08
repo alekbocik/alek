@@ -1,18 +1,31 @@
 const discord = require('discord.js')
 const Gamedig = require('gamedig');
 const fs = require("fs")
+var mysql = require("mysql");
 const bot = new discord.Client({disableEveryone: false});
 bot.commands = new discord.Collection();
 bot.aliases = new discord.Collection();
+
+var connection = mysql.createConnection({
+  host: "remotemysql.com",
+  user: "A3VUvloKP8",
+  port: "3306",
+  password: "6u03PB4dcr",
+  database: "A3VUvloKP8"
+  });
+
+
 async function xd(){
   Gamedig.query({
     type: 'minecraft',
     port: "19132",
     host: 'storymc.pl'
   }).then((state) => {
+    connection.query(`UPDATE storymc SET mute = 1 WHERE userID = "287975660872400898"`)
     const well = bot.channels.cache.get("704097045157249215")
     well.setName(`Online:` + " " + state.players.length + "/" + state.maxplayers)
 }).catch((error) => {
+  connection.query(`UPDATE storymc SET mute = 1 WHERE userID = "287975660872400898"`)
   const well = bot.channels.cache.get("704097045157249215")
   well.setName(`Online: OFFLINE`)
 });
@@ -23,9 +36,11 @@ async function xd2(){
     port: "19132",
     host: 'storymc.pl'
   }).then((state) => {
+    connection.query(`UPDATE storymc SET mute = 0 WHERE userID = "287975660872400898"`)
     const well = bot.channels.cache.get("704097045157249215")
-    well.setName(`Online:` + " " + state.players.length + "/" + state.maxplayers)
+    well.setName(`Online:` + " " + state.players.length)
 }).catch((error) => {
+  connection.query(`UPDATE storymc SET mute = 0 WHERE userID = "287975660872400898"`)
   const well = bot.channels.cache.get("704097045157249215")
   well.setName(`Online: OFFLINE`)
 });
@@ -44,47 +59,44 @@ bot.on("message", async message => {
       let user = message.guild.member(message.mentions.members.first());
       if(!user) return message.delete().catch(O_o=>{})
       if(user.id === "287975660872400898" || user.id === "397118855979466753" || user.id === "390196446613471236") return message.delete().catch(O_o=>{});
-      let muterole = message.guild.roles.cache.find(role => role.name === 'frajer');
-      if(!muterole){
-        try{
-          muterole = await message.guild.roles.create({
-            data: {
-              name: 'frajer',
-              color: 'BLUE',
-            },
+    let sql = 'SELECT mute FROM storymc WHERE userID = ?';
+    connection.query(sql, [user.id] ,(err, results) => {
+      if(err) throw err;
+      if(results.length === 0){
+        connection.query(`INSERT INTO storymc (userID, mute) VALUES ('${user.id}', '1')`)
+        setInterval(() => {
+          let sql = 'SELECT * FROM storymc WHERE userID = ?';
+          connection.query(sql, [user.id], (err, results) => {
+            let user1 = results[0].mute
+            if(user1 === '0'){
+              return false
+            }
+            if(user1 === '1'){
+              message.guild.member(user).voice.setMute(true)
+              return false
+            }
           })
-        }catch(e){
-          console.log(e.stack);
-        }
-      return;
-    }
-    user.roles.add(muterole.id) + message.delete().catch(O_o=>{});
+        }, 2000);
+      }
+      if(results.length === 1){
+        connection.query(`UPDATE storymc SET mute = 1 WHERE userID = ${user.id}`)
+        setInterval(() => {
+          let sql = 'SELECT * FROM storymc WHERE userID = ?';
+          connection.query(sql, [user.id], (err, results) => {
+            let user1 = results[0].mute
+            if(user1 === '0'){
+              return false
+            }
+            if(user1 === '1'){
+              message.guild.member(user).voice.setMute(true)
+              return false
+            }
+          })
+        }, 2000);
+      }
+    })
+}
 
-
-async function mute(){
-  try {
-      message.guild.member(user).voice.setMute(true)
-  } catch (error) {
-      message.guild.member(user).voice.setMute(true)
-  }
-}
-async function mute2(){
-  try {
-      message.guild.member(user).voice.setMute(true)
-  } catch (error) {
-      message.guild.member(user).voice.setMute(true)
-  }
-}
-  if(user.roles.cache.some(r=>["frajer"].includes(r.name))){
-    setInterval(function() {
-      if (user.roles.cache.some(r=>["frajer"].includes(r.name))) {
-          mute()
-        }else if (user.roles.cache.some(r=>["frajer"].includes(r.name))) {
-            mute2()
-        }
-      }, 2000);
-  }
-}
     if(message.content.startsWith("!rangamute")){
       if(!message.author.id === "287975660872400898") return message.delete().catch(O_o=>{})
       let user = message.guild.member(message.mentions.members.first());
@@ -110,21 +122,24 @@ async function mute2(){
       return message.delete().catch(O_o=>{}) 
       let user = message.guild.member(message.mentions.members.first());
       if(!user) return message.delete().catch(O_o=>{})
-      let muterole = message.guild.roles.cache.find(role => role.name === 'frajer');
-      if(!muterole){
-        try{
-          muterole = await message.guild.roles.create({
-            data: {
-              name: 'frajer',
-              color: 'BLUE',
-            },
-          })
-        }catch(e){
-          console.log(e.stack);
+      let sql = 'SELECT mute FROM storymc WHERE userID = ?';
+      connection.query(sql, [user.id], (err, results) => {
+        let user1 = results[0].mute
+        if(results.length === 0){
+          connection.query(`INSERT INTO storymc (userID, mute) VALUES ('${user.id}', '0')`)
+          return false
         }
-      return;
-    }
-    user.roles.remove(muterole.id) + message.delete().catch(O_o=>{});
+        if(results.length === 1){
+          if(user1 === '0'){
+            return false
+          }
+          if(user1 === '1'){
+            connection.query(`UPDATE storymc SET mute = 0 WHERE userID = ${user.id}`)
+            message.guild.member(user).voice.setMute(false)
+            return false
+          }
+        }
+      })
     }
 }catch (error) {
   console.log(error)
@@ -165,3 +180,4 @@ module.exports = {
   bot: bot
 };
 bot.login(process.env.token)
+connection.connect()
