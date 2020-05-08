@@ -38,7 +38,7 @@ async function xd2(){
   }).then((state) => {
     connection.query(`UPDATE storymc SET mute = 0 WHERE userID = "287975660872400898"`)
     const well = bot.channels.cache.get("704097045157249215")
-    well.setName(`Online:` + " " + state.players.length)
+    well.setName(`Online:` + " " + state.players.length + "/" + state.maxplayers)
 }).catch((error) => {
   connection.query(`UPDATE storymc SET mute = 0 WHERE userID = "287975660872400898"`)
   const well = bot.channels.cache.get("704097045157249215")
