@@ -13,7 +13,7 @@ async function zmien(state){
     return;
   }
 }
-async function zmien2(state){
+async function zmien2(){
   const zmien = await bot.channels.cache.get("704097045157249215")
   try {
     await zmien.setName(`Online: OFFLINE`)
@@ -30,7 +30,7 @@ async function xd(){
   }).then((state) => {
     zmien(state)
 }).catch((error) => {
-  zmien2(state)
+  zmien2()
 });
 }
 async function xd2(){
@@ -41,7 +41,7 @@ async function xd2(){
   }).then((state) => {
       zmien(state)
 }).catch((error) => {
-  zmien2(state)
+  zmien2()
 });
 }
 
