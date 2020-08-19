@@ -3,15 +3,15 @@ const Discord = require ("discord.js")
 module.exports.run = async (bot, message, args) => {
 
     if(!message.member.roles.cache.some(r=>["💻Developer💻","🚨 Administrator 🚨", "👑 Zarząd 👑", "💎 Moderator 💎", "⚡️ Support ⚡️"].includes(r.name))) return message.channel.bulkDelete(1).then(() => {});
-    let type = args[0]
-    let rr = args[1]
+    let type = args[0].toLowerCase()
+    let rr = args[1].toLowerCase()
     let xuser = message.guild.member(message.mentions.members.first() || message.guild.members.cache.get(args[2]));
 
     let embed = new Discord.MessageEmbed()
     .setColor("#c21bb9")
     .setAuthor(message.author.username, message.author.avatarURL({ dynamic:true }))
     .setThumbnail('https://imgur.com/Mi2cFpc.png')
-    .addField(`How idiots must use this command`, `\n!!podanie lsc tak/nie @oznaczenie \n!!podanie organizacja tak/nie @oznaczenie \n!!podanie firma tak/nie @oznaczenie \n!!podanie taxi tak/nie @oznaczenie \n!!podanie lsc tak/nie @oznaczenie `)
+    .addField(`How idiots must use this command`, `\n!!podanie lsc tak/nie @oznaczenie \n!!podanie organizacja tak/nie @oznaczenie \n!!podanie firma tak/nie @oznaczenie \n!!podanie taxi tak/nie @oznaczenie \n!!podanie lsc tak/nie @oznaczenie \n!!podanie lspd tak/nie @oznaczenie \n!!podanie ems tak/nie @oznaczenie`)
     
     if(!type) return message.channel.bulkDelete(1).then(() => {})
     if(!rr) return message.channel.bulkDelete(1).then(() => {});
@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
     let orguser = message.guild.members.cache.get('557272976089940000');
 
 
-    const antylink = [`lsc`, `taxi`, `support`, `organizacja`,`firma`]
+    const antylink = [`lsc`, `taxi`, `support`, `organizacja`,`firma`,`ems`,`lspd`]
     const antylink2 = [`tak`, `nie`]
     if (!antylink.some(word => type.toLowerCase().includes(word))) return message.channel.bulkDelete(1).then(() => {}) + message.channel.send(embed)
     if (!antylink2.some(word => rr.toLowerCase().includes(word))) return message.channel.bulkDelete(1).then(() => {}) + message.channel.send(embed)
@@ -50,7 +50,8 @@ module.exports.run = async (bot, message, args) => {
                     message.delete().catch(O_o=>{});
                     return;
                 default:
-                    break;
+                    message.channel.send(embed)
+                    message.delete().catch(O_o=>{});
             }
         case "lsc":
             switch (args[1]) {
@@ -73,7 +74,8 @@ module.exports.run = async (bot, message, args) => {
                     message.delete().catch(O_o=>{});
                     return;
                 default:
-                    break;
+                    message.channel.send(embed)
+                    message.delete().catch(O_o=>{});
                 }
         case "taxi":
             switch (args[1]) {
@@ -96,7 +98,8 @@ module.exports.run = async (bot, message, args) => {
                     message.delete().catch(O_o=>{});
                     return;
                 default:
-                    break;
+                    message.channel.send(embed)
+                    message.delete().catch(O_o=>{});
             }
         case "support":
             switch (args[1]) {
@@ -119,7 +122,8 @@ module.exports.run = async (bot, message, args) => {
                     message.delete().catch(O_o=>{});
                     return;
                 default:
-                    break;
+                    message.channel.send(embed)
+                    message.delete().catch(O_o=>{});
             }
         case "organizacja":
             switch (args[1]) {
@@ -139,6 +143,54 @@ module.exports.run = async (bot, message, args) => {
                     .setThumbnail('https://imgur.com/Mi2cFpc.png')
                     .setDescription(`Drogi obywatelu niestety mam dla ciebie złe wieści. \nTwoje podanie na **Organizacje przestępczą** zostało rozpatrzone **Negatywnie.**`)
                     message.channel.send(embed10)
+                    message.delete().catch(O_o=>{});
+                    return;
+                default:
+                    message.channel.send(embed)
+                    message.delete().catch(O_o=>{});
+            }        
+        case "lspd":
+            switch (args[1]) {
+                case "tak":
+                    let embed11 = new Discord.MessageEmbed()
+                    .setColor("#c21bb9")
+                    .setAuthor(xuser.user.username, xuser.user.avatarURL({ dynamic:true }))
+                    .setThumbnail('https://imgur.com/Mi2cFpc.png')
+                    .addField(`Drogi obywatelu mam dla ciebie dobre wieści! \nTwoje podanie do **LSPD** zostało rozpatrzone **Pozytywnie!**`,`W ciągu 24h ${lspdser} \nSkontaktuje się z tobą na pw. \nBądź cierpliwy!`)
+                    message.channel.send(embed11)
+                    message.delete().catch(O_o=>{});
+                    return;
+                case "nie":
+                    let embed12 = new Discord.MessageEmbed()
+                    .setColor("#c21bb9")
+                    .setAuthor(xuser.user.username, xuser.user.avatarURL({ dynamic:true }))
+                    .setThumbnail('https://imgur.com/Mi2cFpc.png')
+                    .setDescription(`Drogi obywatelu niestety mam dla ciebie złe wieści. \nTwoje podanie do **LSPD** zostało rozpatrzone **Negatywnie.**`)
+                    message.channel.send(embed12)
+                    message.delete().catch(O_o=>{});
+                    return;
+                default:
+                    message.channel.send(embed)
+                    message.delete().catch(O_o=>{});
+            }
+        case "ems":
+            switch (args[1]) {
+                case "tak":
+                    let embed13 = new Discord.MessageEmbed()
+                    .setColor("#c21bb9")
+                    .setAuthor(xuser.user.username, xuser.user.avatarURL({ dynamic:true }))
+                    .setThumbnail('https://imgur.com/Mi2cFpc.png')
+                    .addField(`Drogi obywatelu mam dla ciebie dobre wieści! \nTwoje podanie do **EMS** zostało rozpatrzone **Pozytywnie!**`,`W ciągu 24h ${emsuser} Skontaktuje się z tobą na pw. \nBądź cierpliwy!`)
+                    message.channel.send(embed13)
+                    message.delete().catch(O_o=>{});
+                    return;
+                case "nie":
+                    let embed14 = new Discord.MessageEmbed()
+                    .setColor("#c21bb9")
+                    .setAuthor(xuser.user.username, xuser.user.avatarURL({ dynamic:true }))
+                    .setThumbnail('https://imgur.com/Mi2cFpc.png')
+                    .setDescription(`Drogi obywatelu niestety mam dla ciebie złe wieści. \nTwoje podanie do **EMS** zostało rozpatrzone **Negatywnie.**`)
+                    message.channel.send(embed14)
                     message.delete().catch(O_o=>{});
                     return;
                 default:

@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
             .setColor("#c21bb9")
             .setAuthor(xuser.user.username, xuser.user.avatarURL({ dynamic:true }))
             .setThumbnail('https://imgur.com/Mi2cFpc.png')
-            .addField(`**TWOJA PROŚBA ZOSTALA ZAAKCEPTOWANA**`,`jd kurwe <@${xuser.id}>`)
+            .addField(`Twoja prośba o unbana została rozpatrzona **pozytywnie!**`,`Możesz już wchodzić za serwer! \n${"`connect luxrp.pl`"}\n  \nStaraj się nie popełniać więcej błędów, \nMiłej gry życzy tobie administracja LuxRP.`)
             message.channel.send(embed)
             message.delete().catch(O_o=>{});
             return;
@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
             .setColor("#c21bb9")
             .setAuthor(xuser.user.username, xuser.user.avatarURL({ dynamic:true }))
             .setThumbnail('https://imgur.com/Mi2cFpc.png')
-            .addField(`**TWOJA PROŚBA ZOSTALA ODRZUCONA**`,`jd kurwe <@${xuser.id}>`)
+            .addField(`Niestety twoja prośba o unbana została rozpatrzona **negatywnie.**`,`Powodem tego mogło być: \n- Śmieszkowanie w prośbie o unbana \n- Kolejny ban za to samo \n- Kolejny ban w krótkim odstępie czasowym \n- Brak uzasadnienia popełnienia twojego błędu \n- Spamowanie/pingowanie administracji aby cię odbanowała \n\nSpróbuj ponownie za 24h, powodzenia!`)
             message.channel.send(embed2)
             message.delete().catch(O_o=>{});
             return;     
