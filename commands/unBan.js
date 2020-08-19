@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
             .setColor("#c21bb9")
             .setAuthor(xuser.user.username, xuser.user.avatarURL({ dynamic:true }))
             .setThumbnail('https://imgur.com/Mi2cFpc.png')
-            .addField(`Twoja prośba o unbana została rozpatrzona **pozytywnie!**`,`Możesz już wchodzić za serwer! \n${"`connect luxrp.pl`"}\n  \nStaraj się nie popełniać więcej błędów, \nMiłej gry życzy tobie administracja LuxRP.`)
+            .addField(`Twoja prośba o unbana została rozpatrzona **pozytywnie!**`,`Możesz już wchodzić za serwer!\n \n${"`connect luxrp.pl`"}\n  \nStaraj się nie popełniać więcej błędów, \nMiłej gry życzy tobie administracja LuxRP.`)
             message.channel.send(embed)
             message.delete().catch(O_o=>{});
             return;
