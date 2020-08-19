@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
     let supportuser = message.guild.members.cache.get('557272976089940000');
     let orguser = message.guild.members.cache.get('557272976089940000');
     let lspduser = message.guild.members.cache.get('557272976089940000');
-    let emsuser = message.guild.members.cache.get('371342162752831488);
+    let emsuser = message.guild.members.cache.get('371342162752831488');
 
     const antylink = [`lsc`, `taxi`, `support`, `organizacja`,`firma`,`ems`,`lspd`]
     const antylink2 = [`tak`, `nie`]
