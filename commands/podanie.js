@@ -157,7 +157,7 @@ module.exports.run = async (bot, message, args) => {
                     .setColor("#c21bb9")
                     .setAuthor(xuser.user.username, xuser.user.avatarURL({ dynamic:true }))
                     .setThumbnail('https://imgur.com/Mi2cFpc.png')
-                    .addField(`Drogi obywatelu mam dla ciebie dobre wieści! \nTwoje podanie do **LSPD** zostało rozpatrzone **Pozytywnie!**`,`W ciągu 24h ${lspdser} \nSkontaktuje się z tobą na pw. \nBądź cierpliwy!`)
+                    .addField(`Drogi obywatelu mam dla ciebie dobre wieści! \nTwoje podanie do **LSPD** zostało rozpatrzone **Pozytywnie!**`,`W ciągu 24h ${lspduser} \nSkontaktuje się z tobą na pw. \nBądź cierpliwy!`)
                     message.channel.send(embed11)
                     message.delete().catch(O_o=>{});
                     return;
