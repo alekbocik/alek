@@ -3,8 +3,8 @@ const Discord = require ("discord.js")
 module.exports.run = async (bot, message, args) => {
 
     if(!message.member.roles.cache.some(r=>["💻Developer💻","🚨 Administrator 🚨", "👑 Zarząd 👑", "💎 Moderator 💎", "⚡️ Support ⚡️"].includes(r.name))) return message.channel.bulkDelete(1).then(() => {});
-    let type = args[0].toLowerCase()
-    let rr = args[1].toLowerCase()
+    let type = args[0]
+    let rr = args[1]
     let xuser = message.guild.member(message.mentions.members.first() || message.guild.members.cache.get(args[2]));
 
     let embed = new Discord.MessageEmbed()
