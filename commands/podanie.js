@@ -150,14 +150,14 @@ module.exports.run = async (bot, message, args) => {
                     message.channel.send(embed)
                     message.delete().catch(O_o=>{});
             }        
-        case "lspd":
+        case "sasp":
             switch (args[1]) {
                 case "tak":
                     let embed11 = new Discord.MessageEmbed()
                     .setColor("#c21bb9")
                     .setAuthor(xuser.user.username, xuser.user.avatarURL({ dynamic:true }))
                     .setThumbnail('https://imgur.com/Mi2cFpc.png')
-                    .addField(`Drogi obywatelu mam dla ciebie dobre wieści! \nTwoje podanie do **LSPD** zostało rozpatrzone **Pozytywnie!**`,`W ciągu 24h ${lspduser} \nSkontaktuje się z tobą na pw. \nBądź cierpliwy!`)
+                    .addField(`Drogi obywatelu mam dla ciebie dobre wieści! \nTwoje podanie do **SASP** zostało rozpatrzone **Pozytywnie!**`,`W ciągu 24h ${lspduser} \nSkontaktuje się z tobą na pw. \nBądź cierpliwy!`)
                     message.channel.send(embed11)
                     message.delete().catch(O_o=>{});
                     return;
@@ -166,7 +166,7 @@ module.exports.run = async (bot, message, args) => {
                     .setColor("#c21bb9")
                     .setAuthor(xuser.user.username, xuser.user.avatarURL({ dynamic:true }))
                     .setThumbnail('https://imgur.com/Mi2cFpc.png')
-                    .setDescription(`Drogi obywatelu niestety mam dla ciebie złe wieści. \nTwoje podanie do **LSPD** zostało rozpatrzone **Negatywnie.**`)
+                    .setDescription(`Drogi obywatelu niestety mam dla ciebie złe wieści. \nTwoje podanie do **SASP** zostało rozpatrzone **Negatywnie.**`)
                     message.channel.send(embed12)
                     message.delete().catch(O_o=>{});
                     return;
