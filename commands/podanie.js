@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
     .setColor("#c21bb9")
     .setAuthor(message.author.username, message.author.avatarURL({ dynamic:true }))
     .setThumbnail('https://imgur.com/Mi2cFpc.png')
-    .addField(`How idiots must use this command`, `\n!!podanie lsc tak/nie @oznaczenie \n!!podanie organizacja tak/nie @oznaczenie \n!!podanie firma tak/nie @oznaczenie \n!!podanie taxi tak/nie @oznaczenie \n!!podanie lsc tak/nie @oznaczenie \n!!podanie lspd tak/nie @oznaczenie \n!!podanie ems tak/nie @oznaczenie`)
+    .addField(`How idiots must use this command`, `\n!!podanie lsc tak/nie @oznaczenie \n!!podanie organizacja tak/nie @oznaczenie \n!!podanie firma tak/nie @oznaczenie \n!!podanie taxi tak/nie @oznaczenie \n!!podanie lsc tak/nie @oznaczenie \n!!podanie sasp tak/nie @oznaczenie \n!!podanie ems tak/nie @oznaczenie`)
     
     if(!type) return message.channel.bulkDelete(1).then(() => {})
     if(!rr) return message.channel.bulkDelete(1).then(() => {});
@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
     let lspduser = message.guild.members.cache.get('557272976089940000');
     let emsuser = message.guild.members.cache.get('371342162752831488');
 
-    const antylink = [`lsc`, `taxi`, `support`, `organizacja`,`firma`,`ems`,`lspd`]
+    const antylink = [`lsc`, `taxi`, `support`, `organizacja`,`firma`,`ems`,`sasp`]
     const antylink2 = [`tak`, `nie`]
     if (!antylink.some(word => type.toLowerCase().includes(word))) return message.channel.bulkDelete(1).then(() => {}) + message.channel.send(embed)
     if (!antylink2.some(word => rr.toLowerCase().includes(word))) return message.channel.bulkDelete(1).then(() => {}) + message.channel.send(embed)
